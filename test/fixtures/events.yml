@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_start: 2023-09-05
+  date_end: 2023-09-05
+  hour_start: 2023-09-05 15:00:38
+  comment: MyText
+  type: one
+  user: one
+
+two:
+  date_start: 2023-09-05
+  date_end: 2023-09-05
+  hour_start: 2023-09-05 15:00:38
+  comment: MyText
+  type: two
+  user: two
