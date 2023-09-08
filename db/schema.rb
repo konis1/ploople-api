@@ -10,9 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_124055) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_125957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.date "date_start"
+    t.date "date_end"
+    t.time "hour_start"
+    t.text "comment"
+    t.bigint "type_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type_id"], name: "index_events_on_type_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.boolean "pending_invite"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
 
   create_table "types", force: :cascade do |t|
     t.string "name"
@@ -37,4 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_124055) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "types"
+  add_foreign_key "events", "users"
+  add_foreign_key "friends", "users"
+  add_foreign_key "invitations", "events"
+  add_foreign_key "invitations", "users"
 end
