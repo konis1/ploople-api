@@ -1,0 +1,31 @@
+.card-category {
+  background-image: url("../assets/ploopl.jpg");
+  border: 1px solid #0000001a;
+  height: 25vh;
+  position: relative;
+}
+
+.title--bottom {
+  position:absolute;
+  bottom: 0px;
+}
+
+.title--center {
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + div {
+  border: 2px solid #f00;
+}
+
