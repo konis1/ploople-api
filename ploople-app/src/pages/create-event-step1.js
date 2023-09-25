@@ -8,23 +8,32 @@ export default function App() {
 
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/version1/events/new", {
-      method: "GET",
-    })
-      .then(response => response.json())
-      .then(data => {
-        setCategories(data);
+    const fetchCategoriesData = () => {
+      fetch("http://localhost:3000/api/version1/events/new", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Access-Control-Allow-Origin': 'http://localhost:3000/api/version1/events/new',
+        }
       })
-      .catch((error) => console.log(error));
-  }, [categories]);
+        .then(response => {
+          response.json();
+        })
+        .then(data => {
+          setCategories(data);
+          console.log(data);
+        })
+    }
+
+    useEffect(() => {
+      fetchCategoriesData()
+    }, [categories])
 
   return (
     <div className="home-container text-center">
       <form>
         <div className="steps">
           1 - Choose the type of event
-      {categories[0].name}
         </div>
         <div className="cards">
           <CardCategory />
