@@ -6,9 +6,9 @@ export default function CardCategory() {
 
   return (
     <label>
-      <input type="radio" name="categorie" value="beers" />
+      <input type="radio" name="categorie" value="" />
       <div className="card-category" >
-      <h2 className="title--bottom title--center"> Beers </h2>
+      <h2 className="title--bottom title--center"> </h2>
       </div>
     </label>
   );
