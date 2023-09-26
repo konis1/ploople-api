@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
-  def create
+  def new
+    categories = Type.all
+    render json: categories
   end
 end
