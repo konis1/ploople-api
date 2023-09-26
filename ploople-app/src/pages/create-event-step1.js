@@ -6,15 +6,16 @@ import "./create-event-step1.css";
 export default function App() {
 
   const [categories, setCategories] = useState([]);
+  const url = "http://localhost:3000/api/version1/types"
 
     const fetchCategoriesData = () => {
-      fetch("http://localhost:3000/api/version1/events/new")
+      fetch(url)
         .then(response => {
           return response.json();
         })
         .then(data => {
           setCategories(data);
-          console.log(categories);
+          console.log(categories)
         })
     }
 
@@ -27,7 +28,6 @@ export default function App() {
       <form>
         <div className="steps">
           1 - Choose the type of event
-
         </div>
         <div className="cards">
           <CardCategory value= {categories[0]}/>
