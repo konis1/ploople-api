@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 
-export default function App() {
+export default function Home() {
   const navigate = useNavigate();
   return (
     <div className="wrapper">

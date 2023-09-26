@@ -3,34 +3,51 @@ import CardCategory from "../components/cardCategory"
 import BtnNext from "../components/btnNext"
 import "./create-event-step1.css";
 
-export default function App() {
+
+
+export default function CreateEventStep1() {
 
   const [categories, setCategories] = useState([]);
-  const url = "http://localhost:3000/api/version1/types"
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const url = "http://localhost:3000/api/version1/types";
 
-    const fetchCategoriesData = () => {
-      fetch(url)
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          setCategories(data);
-          console.log(categories)
-        })
-    }
-
-    useEffect(() => {
-      fetchCategoriesData()
-    }, [])
+  useEffect(() => {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCategories(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setCategories(null);
+       })
+       .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="home-container text-center">
       <form>
+      {loading && <div>A moment please...</div>}
+      {error && (
+        <div>{`There is a problem fetching the post data - ${error}`}</div>
+      )}
+      
         <div className="steps">
           1 - Choose the type of event
         </div>
         <div className="cards">
-          <CardCategory value= {categories[0]}/>
+          <CardCategory/>
           <CardCategory/>
           <CardCategory/>
           <CardCategory/>
