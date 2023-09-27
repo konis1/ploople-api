@@ -15,7 +15,7 @@ user.save
 
 puts "user Test added with password 123456"
 
-Type.create(name:"Beers", description:"Let's go for beers")
+Type.create(name:"Beers", image:"/images/Beers.jpg", description: "Let's go for beers")
 Type.create(name:"Wine", description:"Let's go for Wine")
 Type.create(name:"Club", description:"Let's go for hard tech")
 Type.create(name:"Concert", description:"Let's go for a concert")

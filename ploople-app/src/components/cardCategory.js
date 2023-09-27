@@ -2,14 +2,9 @@
 import "./cardCategory.css";
 
 
-export default function CardCategory() {
+export default function CardCategory(name) {
 
   return (
-    <label>
-      <input type="radio" name="categorie" value="" />
-      <div className="card-category" >
-      <h2 className="title--bottom title--center"> </h2>
-      </div>
-    </label>
+    <h2 className="title--bottom title--center"> {name} </h2>
   );
 };

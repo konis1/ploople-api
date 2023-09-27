@@ -1,13 +1,13 @@
 .home-card {
-  margin-top:calc(100vh - 45vh) !important;
+  margin-top:calc(100vh - 33vh) !important;
   padding: 1em;
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
-  height: 35vh;
   background: white;
 }
 
 .wrapper {
   background-image: url("./assets/ploopl.jpg");
   height:100vh;
+  overflow:auto;
 }

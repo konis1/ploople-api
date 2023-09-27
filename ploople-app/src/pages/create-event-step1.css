@@ -6,10 +6,9 @@
 }
 .home-container {
   padding: 1em;
-  margin-top: 5vh;
-  margin-left: 5%;
-  height:90vh;
   width: 90%;
+  margin-left: 5vw;
+  background: white;
   border-radius:10px;
   border: 1px solid grey;
   overflow: scroll;

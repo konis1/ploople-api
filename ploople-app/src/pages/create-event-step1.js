@@ -1,9 +1,46 @@
 import React, {useEffect, useState} from "react";
-import CardCategory from "../components/cardCategory"
+import "../components/cardCategory.css";
+
 import BtnNext from "../components/btnNext"
 import "./create-event-step1.css";
 
+const LoadingIssue = () => (
+  <>
+    <div className="issue">
+      <div className="loading issue-loading" style={{ height: "20rem" }} />
+      <div className="loading issue-loading" />
+    </div>
+  </>
+);
 
+const LoadingScreen = () => {
+  console.log("loading");
+  return (
+    <div className="layout">
+      <LoadingIssue />
+    </div>
+  );
+};
+
+export function Cards(categories){
+  const listItems = categories.value.map(category => {
+    return (
+      <>
+        <label key={category.key}>
+          <input  type="radio" name="categorie" value={category.name} />
+            <div className="card-category" >
+              <h2 className="title--bottom title--center"> {category.name} </h2>
+            </div>
+        </label>
+      </>
+    )
+  })
+    return(
+      <div className="cards">
+        {listItems}
+      </div>
+    );
+  }
 
 export default function CreateEventStep1() {
 
@@ -35,30 +72,22 @@ export default function CreateEventStep1() {
       });
   }, []);
 
+  if (loading) return <LoadingScreen/>
+
   return (
-    <div className="home-container text-center">
-      <form>
-      {loading && <div>A moment please...</div>}
-      {error && (
-        <div>{`There is a problem fetching the post data - ${error}`}</div>
-      )}
-      
-        <div className="steps">
-          1 - Choose the type of event
-        </div>
-        <div className="cards">
-          <CardCategory/>
-          <CardCategory/>
-          <CardCategory/>
-          <CardCategory/>
-          <CardCategory/>
-          <CardCategory/>
-          <CardCategory/>
-        </div>
-        <div>
-          <BtnNext/>
-        </div>
-      </form>
+    <div className="wrapper">
+      <div className="home-container text-center">
+        <form>
+          <div className="steps">
+            1 - Choose the type of event
+          </div>
+          <Cards value={categories}/>
+          <div>
+            <BtnNext/>
+          </div>
+        </form>
+      </div>
+
     </div>
   );
 };

@@ -5,7 +5,7 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <div className="wrapper">
-      <div className="container home-container text-center">
+      <div className="container text-center">
         <div className="row justify-content-center">
           <div className="col-10 home-card">
                 <h2> Planning with friends made easier</h2>
