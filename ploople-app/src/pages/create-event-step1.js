@@ -28,8 +28,12 @@ export function Cards(categories){
       <>
         <label key={category.key}>
           <input  type="radio" name="categorie" value={category.name} />
-            <div className="card-category" >
-              <h2 className="title--bottom title--center"> {category.name} </h2>
+            <div className="card-category" style={{
+              backgroundImage:`url(${'http://localhost:3000/' + category.image})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              }} >
+              <h2 className="title--bottom title--center title--shadow"> {category.name} </h2>
             </div>
         </label>
       </>
