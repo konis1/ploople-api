@@ -1,23 +1,13 @@
 import React, {useEffect, useState} from "react";
-import "../components/cardCategory.css";
-
 import BtnNext from "../components/btnNext"
+import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-const LoadingIssue = () => (
-  <>
-    <div className="issue">
-      <div className="loading issue-loading" style={{ height: "20rem" }} />
-      <div className="loading issue-loading" />
-    </div>
-  </>
-);
 
 const LoadingScreen = () => {
   console.log("loading");
   return (
-    <div className="layout">
-      <LoadingIssue />
+    <div>
     </div>
   );
 };
@@ -32,7 +22,7 @@ export function Cards(categories){
               backgroundImage:`url(${'http://localhost:3000/' + category.image})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
-              }} >
+              }}>
               <h2 className="title--bottom title--center title--shadow"> {category.name} </h2>
             </div>
         </label>
@@ -83,7 +73,8 @@ export default function CreateEventStep1() {
       <div className="home-container text-center">
         <form>
           <div className="steps">
-            1 - Choose the type of event
+            <h1 className="steps--title">1 - Choose the type of event</h1>
+            
           </div>
           <Cards value={categories}/>
           <div>

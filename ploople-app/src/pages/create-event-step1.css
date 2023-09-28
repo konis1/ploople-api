@@ -8,8 +8,12 @@
   padding: 1em;
   width: 90%;
   margin-left: 5vw;
-  background: white;
+  background: #f2f2f2f5;
   border-radius:10px;
-  border: 1px solid grey;
+  border: 1px solid #80808040;
   overflow: scroll;
+}
+
+.steps--title {
+  font-size: 1em;
 }
