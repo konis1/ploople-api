@@ -11,7 +11,6 @@ export default function CreateEventStep2() {
         <form>
           <div className="steps">
             <h1 className="steps--title">2 - Choose the date</h1>
-
           </div>
           <div>
 
@@ -21,7 +20,6 @@ export default function CreateEventStep2() {
           </div>
         </form>
       </div>
-
     </div>
   );
 };
