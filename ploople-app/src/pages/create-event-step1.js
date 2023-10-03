@@ -23,7 +23,9 @@ const ErrorScreen = () => {
 };
 
 function handleClick() {
-  console.log("next");
+  //1 - Save the category
+  //2 - Link to create-event-step2 (create a switch with steps ??) <CreateEvent step={step}/>
+  //3 - if comes from step 2 then the category should be already selected.
 }
 
 export default function CreateEventStep1() {
