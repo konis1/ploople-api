@@ -1,4 +1,5 @@
 import useFetch from "../services/api.js"
+import { Link } from "react-router-dom";
 import BtnNext from "../components/btnNext"
 import Cards from "../components/cards.js"
 import "../components/cardCategory.css";
@@ -21,6 +22,10 @@ const ErrorScreen = () => {
   );
 };
 
+function handleClick() {
+  console.log("next");
+}
+
 export default function CreateEventStep1() {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
 
@@ -36,7 +41,9 @@ export default function CreateEventStep1() {
           </div>
           <Cards value={data}/>
           <div>
-            <BtnNext/>
+            <Link to="../create-event-step2" relative="true">
+              <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick()} > Suivant</button>
+            </Link>
           </div>
         </form>
       </div>

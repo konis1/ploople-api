@@ -13,7 +13,7 @@ export default function CreateEventStep2() {
             <h1 className="steps--title">2 - Choose the date</h1>
           </div>
           <div>
-
+            blip blop you are there
           </div>
           <div>
             <BtnNext/>
