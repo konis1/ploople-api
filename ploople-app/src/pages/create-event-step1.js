@@ -1,4 +1,5 @@
 import useFetch from "../services/api.js"
+import {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 import BtnNext from "../components/btnNext"
 import Cards from "../components/cards.js"
@@ -28,12 +29,12 @@ function handleClick() {
   //3 - if comes from step 2 then the category should be already selected.
 }
 
-export default function CreateEventStep1() {
+export default function CreateEventStep1({formData}) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
 
   if (loading) return <LoadingScreen/>
   if (error) return <ErrorScreen/>
-
+  console.log(formData);
   return (
     <div className="wrapper">
       <div className="home-container text-center">
@@ -41,7 +42,8 @@ export default function CreateEventStep1() {
           <div className="steps">
             <h1 className="steps--title">1 - Choose the type of event</h1>
           </div>
-          <Cards value={data}/>
+          <Cards categories={data}
+          />
           <div>
             <Link to="../create-event-step2" relative="true">
               <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick()} > Suivant</button>

@@ -1,11 +1,24 @@
 
+function handleChange(e) {
+  console.log(e.target.value);
+  // setFormData({
+  //   ...formData,
+  //   category:e.target.value,
+  // });
+}
 
-export default function Cards(categories){
-  const listItems = categories.value.map(category => {
+export default function Cards({categories}){
+  console.log(categories);
+  const listItems = categories.map(category => {
     return (
       <>
         <label key={category.key}>
-          <input  type="radio" name="categorie" value={category.name} />
+          <input  type="radio" name="categorie" value={category.name} onChange={(e) => {
+            // setFormData({
+            //   ...formData,
+            //   category: e.target.value,
+            // });
+          }}/>
             <div className="card-category" style={{
               backgroundImage:`url(${'http://localhost:3000/' + category.image})`,
               backgroundPosition: "center",
