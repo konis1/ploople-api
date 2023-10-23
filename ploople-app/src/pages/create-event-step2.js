@@ -37,7 +37,7 @@ export default function CreateEventStep2({handleClick}) {
             rows={5}/>
           </div>
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow"  > Suivant</button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ handleClick }  > Suivant</button>
           </div>
         </form>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_125957) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_141639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,10 +29,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_125957) do
 
   create_table "friends", force: :cascade do |t|
     t.boolean "pending_invite"
-    t.bigint "user_id", null: false
+    t.bigint "user_friend_id", null: false
+    t.bigint "user_friendy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_friends_on_user_id"
+    t.index ["user_friend_id"], name: "index_friends_on_user_friend_id"
+    t.index ["user_friendy_id"], name: "index_friends_on_user_friendy_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -69,7 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_125957) do
 
   add_foreign_key "events", "types"
   add_foreign_key "events", "users"
-  add_foreign_key "friends", "users"
+  add_foreign_key "friends", "users", column: "user_friend_id"
+  add_foreign_key "friends", "users", column: "user_friendy_id"
   add_foreign_key "invitations", "events"
   add_foreign_key "invitations", "users"
 end

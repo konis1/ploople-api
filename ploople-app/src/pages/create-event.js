@@ -1,6 +1,6 @@
 import CreateEventStep1 from "./create-event-step1";
 import CreateEventStep2 from "./create-event-step2";
-// import CreateEventStep3 from "./create-event-step3";
+import CreateEventStep3 from "./create-event-step3";
 // import CreateEventStep4 from "./create-event-step4";
 import { useState } from 'react';
 
@@ -30,8 +30,11 @@ export default function CreateEvent() {
   }
 
   function handleClick2(date,comment) {
+    console.log("adding date")
     setFormDate(date);
+    console.log("adding comment")
     setFormComment(comment);
+    console.log("adding step")
     addStep();
     //3 - if comes from step 2 then the category should be already selected.
   }
@@ -40,17 +43,14 @@ export default function CreateEvent() {
     setStep(step + 1);
   }
 
-  console.log(formCategory);
-  console.log(step);
-  console.log("Step 2 " + step + " "+ formCategory + " "+formComment + " " + formDate);
 
 //Déterminer category, date, comment, friends qui sont les éléments du formulaire
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
     case 1:
       return <CreateEventStep2 handleClick = { handleClick2 }/>;
-    // case "2":
-    //   return <CreateEventStep3/>;
+    case 2:
+      return <CreateEventStep3/>;
     // case "3":
     //   return <CreateEventStep4/>;
     default:

@@ -2,8 +2,10 @@
 
 one:
   pending_invite: false
-  user: one
+  user_friend: one
+  user_friendy: one
 
 two:
   pending_invite: false
-  user: two
+  user_friend: two
+  user_friendy: two
