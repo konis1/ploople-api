@@ -1,6 +1,6 @@
 class FriendsController < ApplicationController
-  def index
-    friends = Friend.all
+  def show
+    friends = Friend.where("user_friend_id = ?", params[:id])
     render json: friends
   end
 end
