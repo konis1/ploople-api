@@ -4,6 +4,7 @@ import BtnNext from "../components/btnNext"
 import Cards from "../components/cards.js"
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
+import { useState } from "react";
 
 
 const LoadingScreen = () => {
@@ -22,22 +23,13 @@ const ErrorScreen = () => {
   );
 };
 
-function handleClick() {
-  //1 - Save the category
-  //2 - Link to create-event-step2 (create a switch with steps ??) <CreateEvent step={step}/>
-  //3 - if comes from step 2 then the category should be already selected.
-}
 
-export default function CreateEventStep1({change}) {
+export default function CreateEventStep1({change,handleClick}) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
+
 
   if (loading) return <LoadingScreen/>
   if (error) return <ErrorScreen/>
-
-  const handleChange = (event) => {
-    console.log(event);
-    change();
-  }
 
   return (
     <div className="wrapper">
@@ -46,14 +38,11 @@ export default function CreateEventStep1({change}) {
           <div className="steps">
             <h1 className="steps--title">1 - Choose the type of event</h1>
           </div>
-          <Cards
-            categories ={data}
-            handleChange = { handleChange }
-          />
+          <Cards categories= {data} change={change}/>
           <div>
-            <Link to="../create-event-step2" relative="true">
-              <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick()} > Suivant</button>
-            </Link>
+            {/* <Link to="../create-event-step2" relative="true"> */}
+              <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick} > Suivant</button>
+            {/* </Link> */}
           </div>
         </form>
       </div>

@@ -1,19 +1,16 @@
-import React, { useState, useId } from "react";
+import React, { useState, useId, useRef } from "react";
 import DatePicker from "react-datepicker";
-import BtnNext from "../components/btnNext";
 import "react-datepicker/dist/react-datepicker.css";
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-export default function CreateEventStep2() {
+export default function CreateEventStep2({handleClick}) {
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
+  const onChange = (date) => {
+    setStartDate(date);
   };
   const commentId = useId();
+  const textAreaRef = useRef("");
 
   return (
     <div className="wrapper">
@@ -26,9 +23,6 @@ export default function CreateEventStep2() {
             <DatePicker
             selected={startDate}
             onChange={onChange}
-            startDate={startDate}
-            endDate={endDate}
-            selectsRange
             inline
             />
           </div>
@@ -36,10 +30,14 @@ export default function CreateEventStep2() {
             <label htmlFor={commentId}>
               Comment:
             </label>
-            <textarea id={commentId} name="comment" rows="5"/>
+            <textarea
+            ref = {textAreaRef}
+            id={commentId}
+            name="comment"
+            rows={5}/>
           </div>
           <div>
-            <BtnNext/>
+            <button className="form__button btn--sea btn--no-border btn--shadow"  > Suivant</button>
           </div>
         </form>
       </div>

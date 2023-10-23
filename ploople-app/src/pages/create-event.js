@@ -1,29 +1,60 @@
 import CreateEventStep1 from "./create-event-step1";
 import CreateEventStep2 from "./create-event-step2";
-import CreateEventStep3 from "./create-event-step3";
-import CreateEventStep4 from "./create-event-step4";
+// import CreateEventStep3 from "./create-event-step3";
+// import CreateEventStep4 from "./create-event-step4";
 import { useState } from 'react';
 
 
 export default function CreateEvent() {
   const[formCategory, setFormCategory] = useState("");
-  const[step, setStep] = useState("0");
+  const[step, setStep] = useState(0);
+  const[formDate, setFormDate] = useState("");
+  const[formComment, setFormComment] = useState("");
+  const[formFriends, setFormFriends] = useState([]);
+  const initialFormData = [
+    {
+      step:0,
+      category: "",
+      date:"",
+    }
+  ]
 
-  const change = () => {
-    console.log("parent")
+
+  function setCategory(value) {
+    setFormCategory(value);
   }
+
+  function handleClick() {
+    addStep();
+    //3 - if comes from step 2 then the category should be already selected.
+  }
+
+  function handleClick2(date,comment) {
+    setFormDate(date);
+    setFormComment(comment);
+    addStep();
+    //3 - if comes from step 2 then the category should be already selected.
+  }
+
+  function addStep() {
+    setStep(step + 1);
+  }
+
+  console.log(formCategory);
+  console.log(step);
+  console.log("Step 2 " + step + " "+ formCategory + " "+formComment + " " + formDate);
 
 //Déterminer category, date, comment, friends qui sont les éléments du formulaire
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
-    case "1":
-      return <CreateEventStep2/>;
-    case "2":
-      return <CreateEventStep3/>;
-    case "3":
-      return <CreateEventStep4/>;
+    case 1:
+      return <CreateEventStep2 handleClick = { handleClick2 }/>;
+    // case "2":
+    //   return <CreateEventStep3/>;
+    // case "3":
+    //   return <CreateEventStep4/>;
     default:
-      return <CreateEventStep1 change = { change }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 change = { setCategory } handleClick = { handleClick }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }
