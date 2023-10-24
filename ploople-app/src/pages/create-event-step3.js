@@ -20,27 +20,27 @@ const ErrorScreen = () => {
   );
 };
 
-function cardFriend( data) {
+function cardFriend(data, change) {
   const listItems = data.map(friend => {
     return (
       <>
-        <label key={friend.key}>
-          <input  type="radio" name="friend" value={friend.name} />
             <div className="card-friend">
-              <h2 className="title--bottom title--center title--shadow"> {friend.name} </h2>
+              <label  key={friend.key}>
+              <input  type="checkbox" name="friend" value={friend.user_friendy.first_name} onChange={(e)=>change(e.target)} />
+              <h2 className=""> {friend.user_friendy.first_name} </h2>
+              </label>
             </div>
-        </label>
       </>
     )
   })
   return(
-    <div className="cards">
+    <div >
       {listItems}
     </div>
   );
 }
 
-export default function CreateEventStep3({change,handleClick}) {
+export default function CreateEventStep3( {handleClick, change} ) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/friends");
 
 
@@ -55,9 +55,9 @@ export default function CreateEventStep3({change,handleClick}) {
             <h1 className="steps--title">3 - Invite your friends</h1>
           </div>
           {/* Add the friend list from scratch 1 hour */}
-            {cardFriend(data)}
+            {cardFriend(data, change)}
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick} > Suivant</button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ handleClick } > Suivant</button>
           </div>
         </form>
       </div>
