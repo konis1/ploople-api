@@ -1,16 +1,16 @@
-import React, { useState, useId, useRef } from "react";
+import React, { useState, useId } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-export default function CreateEventStep2({handleClick}) {
+export default function CreateEventStep2({handleClick, changeComment, changeDate}) {
   const [startDate, setStartDate] = useState(new Date());
+  const [textArea, setTextArea] = useState("");
   const onChange = (date) => {
-    setStartDate(date);
+    changeDate(date);
   };
   const commentId = useId();
-  const textAreaRef = useRef("");
 
   return (
     <div className="wrapper">
@@ -31,10 +31,13 @@ export default function CreateEventStep2({handleClick}) {
               Comment:
             </label>
             <textarea
-            ref = {textAreaRef}
-            id={commentId}
-            name="comment"
-            rows={5}/>
+              id={commentId}
+              name="comment"
+              rows={5}
+              onChange = {(e) => {
+                changeComment(e.target.value);
+              }}
+              />
           </div>
           <div>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ handleClick }  > Suivant</button>
