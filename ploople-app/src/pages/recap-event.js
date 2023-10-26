@@ -34,8 +34,10 @@ export default function RecapEvent({category, date, comment, friends}) {
       </div>
       <div>
         {
-          displayFriends
-        }
+          friends.map((friend,index) => (
+            <li key={index}> {friend}</li>
+          ))
+          }
       </div>
 
       <div>

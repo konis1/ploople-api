@@ -5,7 +5,6 @@ import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
 export default function CreateEventStep2({handleClick, changeComment, changeDate}) {
-  const [startDate, setStartDate] = useState(new Date());
   const [textArea, setTextArea] = useState("");
   const onChange = (date) => {
     changeDate(date);
@@ -21,7 +20,7 @@ export default function CreateEventStep2({handleClick, changeComment, changeDate
           </div>
           <div>
             <DatePicker
-            selected={startDate}
+            selected={new Date()}
             onChange={onChange}
             inline
             />

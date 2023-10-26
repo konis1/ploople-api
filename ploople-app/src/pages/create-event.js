@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function CreateEvent() {
   const[formCategory, setFormCategory] = useState("");
   const[step, setStep] = useState(0);
-  const[formDate, setFormDate] = useState("");
+  const[formDate, setFormDate] = useState(new Date());
   const[formComment, setFormComment] = useState("");
   const[formFriends, setFormFriends] = useState([]);
 
@@ -18,11 +18,9 @@ export default function CreateEvent() {
 
   function setDate(value) {
     setFormDate(value);
-    console.log(value);
   }
 
   function setComment(value) {
-    console.log(value);
     setFormComment(value);
   }
 
