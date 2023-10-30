@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-
+  skip_forgery_protection
+  
 def create
   @event = Event.new(params[:event])
   @event.save
