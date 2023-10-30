@@ -4,10 +4,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-export default function CreateEventStep2({handleClick, changeComment, changeDate}) {
-  const [textArea, setTextArea] = useState("");
+export default function CreateEventStep2({handleClick, change}) {
   const onChange = (date) => {
-    changeDate(date);
+    change(date,"date");
   };
   const commentId = useId();
 
@@ -34,7 +33,7 @@ export default function CreateEventStep2({handleClick, changeComment, changeDate
               name="comment"
               rows={5}
               onChange = {(e) => {
-                changeComment(e.target.value);
+                change(e.target.value,e.target.name);
               }}
               />
           </div>

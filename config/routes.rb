@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   scope '/api/version1' do
     resources :types, :friends, only: [:index]
+    resources :events, only: [:create]
     # resources :friends, only: [:show]
     devise_for :users
   end

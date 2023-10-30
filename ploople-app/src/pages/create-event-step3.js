@@ -1,8 +1,4 @@
 import useFetch from "../services/api.js"
-import Cards from "../components/cards.js"
-import "../components/cardCategory.css";
-import "./create-event-step1.css";
-
 
 const LoadingScreen = () => {
   return (
@@ -27,7 +23,7 @@ function cardFriend(data, change) {
       <>
             <div className="card-friend">
               <label  key={friend.key}>
-              <input  type="checkbox" name="friend" value={name} onChange={(e)=>change(e.target)} />
+              <input  type="checkbox" name="friends" value={name} onChange={(e)=>change(e.target, e.target.name)} />
               <h2 className=""> {name} </h2>
               </label>
             </div>
@@ -55,7 +51,6 @@ export default function CreateEventStep3( {handleClick, change} ) {
           <div className="steps">
             <h1 className="steps--title">3 - Invite your friends</h1>
           </div>
-          {/* Add the friend list from scratch 1 hour */}
             {cardFriend(data, change)}
           <div>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ handleClick } > Suivant</button>

@@ -10,7 +10,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/create-event-step1" element={<CreateEvent/>}/>
-        <Route path="/create-event-step2" element={<CreateEventStep2/>}/>
       </Routes>
     </>
   );

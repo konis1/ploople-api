@@ -6,35 +6,72 @@ import { useState } from 'react';
 
 
 export default function CreateEvent() {
-  const[formCategory, setFormCategory] = useState("");
   const[step, setStep] = useState(0);
-  const[formDate, setFormDate] = useState(new Date());
-  const[formComment, setFormComment] = useState("");
-  const[formFriends, setFormFriends] = useState([]);
+  const[formData, setFormData] = useState({
+    category:"",
+    date: new Date(),
+    comment: "",
+    friends: []
+  })
 
-  function setCategory(value) {
-    setFormCategory(value);
-  }
-
-  function setDate(value) {
-    setFormDate(value);
-  }
-
-  function setComment(value) {
-    setFormComment(value);
-  }
-
-  function setFriends(event) {
-    let updatedList = [...formFriends];
-    if (event.checked) {
-      updatedList = [...formFriends, event.value]
+    function submitForm() {
+      console.log("ok submit form")
+      console.log(JSON.stringify(formData))
+    fetch('http://localhost:3000/api/version1/events/', {
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        return response.json();
+      })
     }
-    else {
-      // Cherche le friend dans updatedList et retourne l'index
-      const index = formFriends.findIndex((element) => element === event.value);
-      updatedList.splice(index,1); //Supprime l'élément de updatedList lorsque l'on "uncheck"la checkbox"
+
+  function setData(dataValue, dataType) {
+    switch (dataType) {
+      case "category":
+        setFormData({
+          ...formData,
+          category: dataValue
+        })
+        break;
+      case "date":
+        setFormData({
+          ...formData,
+          date:dataValue
+        })
+        break;
+      case "comment":
+        setFormData({
+          ...formData,
+          comment:dataValue
+        })
+        break;
+      case "friends":
+        let updatedList = [...formData.friends];
+          if (dataValue.checked) {
+            updatedList = [...formData.friends, dataValue.value]
+          }
+          else {
+            // Cherche le friend dans updatedList et retourne l'index
+            const index = formData.friends.findIndex((element) => element === dataValue.value);
+            updatedList.splice(index,1); //Supprime l'élément de updatedList lorsque l'on "uncheck"la checkbox"
+          }
+          setFormData({
+          ...formData,
+          friends:updatedList
+        })
+        break;
+        default:
+          console.log("Error");
     }
-    setFormFriends(updatedList);
   }
 
   function handleClick() {
@@ -46,17 +83,18 @@ export default function CreateEvent() {
     setStep(step + 1);
   }
 
+
 //Déterminer category, date, comment, friends qui sont les éléments du formulaire
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
     case 1:
-      return <CreateEventStep2 handleClick = { handleClick } changeComment = {setComment} changeDate = {setDate}/>;
+      return <CreateEventStep2 handleClick = { handleClick } change = {setData}/>;
     case 2:
-      return <CreateEventStep3 handleClick = { handleClick } change = {setFriends}/>;
+      return <CreateEventStep3 handleClick = { handleClick } change = {setData}/>;
     case 3:
-      return <RecapEvent category = {formCategory} date = {formDate} comment = {formComment} friends= {formFriends}/>;
+      return <RecapEvent data = {formData} handleClick = { submitForm } />;
     default:
-      return <CreateEventStep1 change = { setCategory } handleClick = { handleClick }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 change = { setData } handleClick = { handleClick }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }

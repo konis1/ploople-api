@@ -3,7 +3,7 @@ export default function Cards({categories, change}){
     return (
       <>
         <label key={category.key}>
-          <input  type="radio" name="categorie" value={category.name} onChange={(e)=>change(e.target.value)}/>
+          <input  type="radio" name="category" value={category.name} onChange={(e)=>change(e.target.value, e.target.name)}/>
             <div className="card-category" style={{
               backgroundImage:`url(${'http://localhost:3000/' + category.image})`,
               backgroundPosition: "center",
