@@ -15,8 +15,6 @@ export default function CreateEvent() {
   })
 
     function submitForm() {
-      console.log("ok submit form")
-      console.log(JSON.stringify(formData))
     fetch('http://localhost:3000/api/version1/events/', {
         method:'POST',
         headers: {
@@ -25,15 +23,12 @@ export default function CreateEvent() {
         body: JSON.stringify(formData)
       })
       .then(response => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        return response.json();
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
       })
     }
-
   function setData(dataValue, dataType) {
     switch (dataType) {
       case "category":
