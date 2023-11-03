@@ -16,7 +16,7 @@ end
 private
 
 def event_params
-  params.require(:event).permit(:category, :date, :comment, :friends)
+  params.require(:event).permit(:date, :date, :comment, :friends)
 end
 
 end
