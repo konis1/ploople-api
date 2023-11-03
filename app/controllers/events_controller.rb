@@ -1,22 +1,28 @@
 class EventsController < ApplicationController
   skip_forgery_protection
 
-def create
-  @event = Event.new(params[:formData])
-  @type = Type.find_by(name: params[:category])
-  @event.type = @type
-  @event.user = current_user
-  if @event.save
-    render json: @event
-  else
-    render json: @event.errors, status: :unprocessable_entity
+  def create
+    @event = Event.new(event_params)
+    @type = Type.find_by(name: params[:category])
+    @event.type = @type
+    @event.user = User.find_by(name: "Anthony Christodoulou")
+    params[:friends].each do |friend|
+      invitation = Invitation.new(pending_invitation: true, accepted_invitation: false)
+      invitation.user = User.find_by(name: friend)
+      invitation.event = @event
+      invitation.save
+    end
+    if @event.save
+      render json: params
+    else
+      render json: @event.error
+    end
   end
-end
 
-private
+  private
 
-def event_params
-  params.require(:event).permit(:date, :date, :comment, :friends)
-end
+  def event_params
+    params.require(:event).permit(:date_start, :date_end, :comment)
+  end
 
 end

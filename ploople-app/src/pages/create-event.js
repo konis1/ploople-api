@@ -9,7 +9,8 @@ export default function CreateEvent() {
   const[step, setStep] = useState(0);
   const[formData, setFormData] = useState({
     category:"",
-    date: new Date(),
+    date_start: new Date(),
+    date_end: new Date(),
     comment: "",
     friends: []
   })
@@ -29,6 +30,7 @@ export default function CreateEvent() {
         console.log(error)
       })
     }
+
   function setData(dataValue, dataType) {
     switch (dataType) {
       case "category":
@@ -40,13 +42,14 @@ export default function CreateEvent() {
       case "date":
         setFormData({
           ...formData,
-          date:dataValue
+          date_start: dataValue,
+          date_end: dataValue
         })
         break;
       case "comment":
         setFormData({
           ...formData,
-          comment:dataValue
+          comment: dataValue
         })
         break;
       case "friends":

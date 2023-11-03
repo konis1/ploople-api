@@ -5,15 +5,17 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.destroy_all
-Type.destroy_all
+Event.destroy_all
+Invitation.destroy_all
 Friend.destroy_all
+Type.destroy_all
+User.destroy_all
 
 puts "adding users test@test.fr"
 
-User.create(first_name: "Anthony", last_name: "Christodoulou", nickname: "konis1", email: "antho@test.fr", password: "123456")
-User.create(first_name: "Niki", last_name: "Ioannou", nickname: "Victoria", email: "niki@test.fr", password: "123456")
-User.create(first_name: "Anna", last_name: "Chipont", nickname: "caca", email: "anna@test.fr", password: "123456")
+User.create(name: "Anthony Christodoulou", nickname: "konis1", email: "antho@test.fr", password: "123456")
+User.create(name: "Niki Ioannou", nickname: "Victoria", email: "niki@test.fr", password: "123456")
+User.create(name: "Anna Chipont", nickname: "caca", email: "anna@test.fr", password: "123456")
 
 puts "creating categories";
 Type.create(name:"Beers", image: ActionController::Base.helpers.image_url("Beers.jpg"),  description: "Let's go for beers")
@@ -25,8 +27,8 @@ Type.create(name:"Running", image: ActionController::Base.helpers.image_url("run
 Type.create(name:"Chill", image: ActionController::Base.helpers.image_url("chill.jpg"), description:"Let's chill at home")
 
 puts "Creating friendships"
-antho = User.find_by first_name:'Anthony'
-niki = User.find_by first_name:'Niki'
-anna = User.find_by first_name:'Anna'
+antho = User.find_by name:'Anthony Christodoulou'
+niki = User.find_by name:'Niki Ioannou'
+anna = User.find_by name:'Anna Chipont'
 Friend.create(pending_invite:false, user_friend:antho, user_friendy: niki)
 Friend.create(pending_invite:false, user_friend:antho, user_friendy: anna )

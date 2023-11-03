@@ -11,7 +11,12 @@ export default function RecapEvent({data, handleClick}) {
       </div>
       <div>
         {
-          data.date.toLocaleString()
+          data.date_start.toLocaleString()
+        }
+      </div>
+      <div>
+        {
+          data.date_end.toLocaleString()
         }
       </div>
       <div>

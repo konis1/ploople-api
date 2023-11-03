@@ -18,7 +18,7 @@ const ErrorScreen = () => {
 
 function cardFriend(data, change) {
   const listItems = data.map(friend => {
-    let name = friend.user_friendy.first_name + " " + friend.user_friendy.last_name
+    let name = friend.user_friendy.name
     return (
       <>
             <div className="card-friend">
