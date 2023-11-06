@@ -72,13 +72,12 @@ export default function CreateEvent() {
     }
   }
 
-  function handleClick() {
-    addStep();
-    //3 - if comes from step 2 then the category should be already selected.
-  }
-
   function addStep() {
     setStep(step + 1);
+  }
+
+  function removeStep() {
+    setStep(step - 1);
   }
 
 
@@ -86,13 +85,13 @@ export default function CreateEvent() {
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
     case 1:
-      return <CreateEventStep2 handleClick = { handleClick } change = {setData}/>;
+      return <CreateEventStep2  nextStep = { addStep } previousStep = { removeStep } change = {setData} formData = { formData }/>;
     case 2:
-      return <CreateEventStep3 handleClick = { handleClick } change = {setData}/>;
+      return <CreateEventStep3  nextStep = { addStep } previousStep = { removeStep }  change = {setData} formData = { formData }/>;
     case 3:
-      return <RecapEvent data = {formData} handleClick = { submitForm } />;
+      return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep } />;
     default:
-      return <CreateEventStep1 change = { setData } handleClick = { handleClick }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 data = {formData.category} change = { setData } nextStep = { addStep }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }

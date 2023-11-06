@@ -21,7 +21,7 @@ const ErrorScreen = () => {
 };
 
 
-export default function CreateEventStep1({change,handleClick}) {
+export default function CreateEventStep1({ formData, change, nextStep }) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
 
 
@@ -35,9 +35,9 @@ export default function CreateEventStep1({change,handleClick}) {
           <div className="steps">
             <h1 className="steps--title">1 - Choose the type of event</h1>
           </div>
-          <Cards categories= {data} change={change}/>
+          <Cards categories= {data} selected={ formData } change={change}/>
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick} > Suivant</button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={nextStep} > Next</button>
           </div>
         </form>
       </div>

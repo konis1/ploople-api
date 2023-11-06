@@ -1,5 +1,5 @@
 
-export default function RecapEvent({data, handleClick}) {
+export default function RecapEvent({data, previousStep, nextStep}) {
 
   return (
     <>
@@ -33,7 +33,8 @@ export default function RecapEvent({data, handleClick}) {
       </div>
 
       <div>
-      <button className="form__button btn--sea btn--no-border btn--shadow" onClick={handleClick} > Confirm</button>
+        <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>
+        <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep } > Confirm</button>
       </div>
 
     </>

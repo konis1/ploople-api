@@ -37,7 +37,7 @@ function cardFriend(data, change) {
   );
 }
 
-export default function CreateEventStep3( {handleClick, change} ) {
+export default function CreateEventStep3( {previousStep, nextStep, change} ) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/friends");
 
 
@@ -53,7 +53,8 @@ export default function CreateEventStep3( {handleClick, change} ) {
           </div>
             {cardFriend(data, change)}
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ handleClick } > Suivant</button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep } > Next</button>
           </div>
         </form>
       </div>

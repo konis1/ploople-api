@@ -1,9 +1,9 @@
-export default function Cards({categories, change}){
+export default function Cards({categories, selectedCategory, change}){
   const listItems = categories.map(category => {
     return (
-      <>
-        <label key={category.key}>
-          <input  type="radio" name="category" value={category.name} onChange={(e)=>change(e.target.value, e.target.name)}/>
+
+        <label key={category.id}>
+          <input  type="radio" name="category" value={category.name} checked = { selectedCategory !== ""} onChange={(e)=>change(e.target.value, e.target.name)}/>
             <div className="card-category" style={{
               backgroundImage:`url(${'http://localhost:3000/' + category.image})`,
               backgroundPosition: "center",
@@ -12,7 +12,7 @@ export default function Cards({categories, change}){
               <h2 className="title--bottom title--center title--shadow"> {category.name} </h2>
             </div>
         </label>
-      </>
+
     )
   })
   return(
