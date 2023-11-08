@@ -23,8 +23,6 @@ const ErrorScreen = () => {
 
 export default function CreateEventStep1({ formData, change, nextStep }) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
-
-
   if (loading) return <LoadingScreen/>
   if (error) return <ErrorScreen/>
 
@@ -35,9 +33,9 @@ export default function CreateEventStep1({ formData, change, nextStep }) {
           <div className="steps">
             <h1 className="steps--title">1 - Choose the type of event</h1>
           </div>
-          <Cards categories= {data} selected={ formData } change={change}/>
+          <Cards categories={ data } formData={ formData } change={ change }/>
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={nextStep} > Next</button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }> Next </button>
           </div>
         </form>
       </div>

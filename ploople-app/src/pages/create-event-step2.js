@@ -1,13 +1,11 @@
-import React, { useState, useId } from "react";
+import React, { useId } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-export default function CreateEventStep2({nextStep, previousStep, change, formData}) {
-  const onChange = (date) => {
-    change(date,"date");
-  };
+export default function CreateEventStep2({ nextStep, previousStep, change, formData }) {
+
   const commentId = useId();
 
   return (
@@ -19,13 +17,14 @@ export default function CreateEventStep2({nextStep, previousStep, change, formDa
           </div>
           <div>
             <DatePicker
-            selected={ formData.date }
-            onChange={ onChange }
-            inline
+              selected={ formData.date_start }
+              onChange={ (e) => {
+                change(e,"date");
+              }}
+              inline
             />
           </div>
           <div>
-            {console.log(formData.date)}
             <label htmlFor={commentId}>
               Comment:
             </label>
@@ -37,12 +36,11 @@ export default function CreateEventStep2({nextStep, previousStep, change, formDa
               onChange = {(e) => {
                 change(e.target.value,e.target.name);
               }}
-              />
+            />
           </div>
           <div>
-          <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>
-
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep}  > Next </button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep }  > Previous </button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }  > Next </button>
           </div>
         </form>
       </div>

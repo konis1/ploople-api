@@ -1,4 +1,5 @@
 import useFetch from "../services/api.js"
+import { existInArray } from "./create-event.js";
 
 const LoadingScreen = () => {
   return (
@@ -16,30 +17,39 @@ const ErrorScreen = () => {
   );
 };
 
-function cardFriend(data, change) {
+
+
+function cardFriend(data, change, formData) {
   const listItems = data.map(friend => {
     let name = friend.user_friendy.name
+    let isFriendSelected = existInArray(formData.friends, name)
     return (
-      <>
-            <div className="card-friend">
-              <label  key={friend.key}>
-              <input  type="checkbox" name="friends" value={name} onChange={(e)=>change(e.target, e.target.name)} />
-              <h2 className=""> {name} </h2>
+            <div className="card-friend" key={friend.user_friendy.id}>
+              <label>
+                <input
+                  type="checkbox"
+                  name="friends"
+                  value={ name }
+                  checked = { isFriendSelected }
+                  onChange={(e)=> {
+                      change(e.target, e.target.name);
+                    }
+                  }
+                />
+                <h2 className=""> { name } </h2>
               </label>
             </div>
-      </>
     )
   })
   return(
     <div >
-      {listItems}
+      { listItems }
     </div>
   );
 }
 
-export default function CreateEventStep3( {previousStep, nextStep, change} ) {
+export default function CreateEventStep3( { previousStep, nextStep, change, formData } ) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/friends");
-
 
   if (loading) return <LoadingScreen/>
   if (error) return <ErrorScreen/>
@@ -51,7 +61,7 @@ export default function CreateEventStep3( {previousStep, nextStep, change} ) {
           <div className="steps">
             <h1 className="steps--title">3 - Invite your friends</h1>
           </div>
-            {cardFriend(data, change)}
+            { cardFriend(data, change, formData) }
           <div>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep } > Next</button>

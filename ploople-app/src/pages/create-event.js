@@ -4,6 +4,10 @@ import CreateEventStep3 from "./create-event-step3";
 import RecapEvent from "./recap-event";
 import { useState } from 'react';
 
+export function existInArray(array, valueWeCheck) {
+   const resultSearch = array.find((e) => e === valueWeCheck )
+   return (resultSearch !== undefined)
+ }
 
 export default function CreateEvent() {
   const[step, setStep] = useState(0);
@@ -31,6 +35,7 @@ export default function CreateEvent() {
       })
     }
 
+
   function setData(dataValue, dataType) {
     switch (dataType) {
       case "category":
@@ -54,10 +59,10 @@ export default function CreateEvent() {
         break;
       case "friends":
         let updatedList = [...formData.friends];
-          if (dataValue.checked) {
+          if (dataValue.checked && !existInArray(updatedList, dataValue.value)) {
             updatedList = [...formData.friends, dataValue.value]
           }
-          else {
+          else if(!dataValue.checked && existInArray(updatedList, dataValue.value)){
             // Cherche le friend dans updatedList et retourne l'index
             const index = formData.friends.findIndex((element) => element === dataValue.value);
             updatedList.splice(index,1); //Supprime l'élément de updatedList lorsque l'on "uncheck"la checkbox"
@@ -79,8 +84,6 @@ export default function CreateEvent() {
   function removeStep() {
     setStep(step - 1);
   }
-
-
 //Déterminer category, date, comment, friends qui sont les éléments du formulaire
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
@@ -91,7 +94,7 @@ export default function CreateEvent() {
     case 3:
       return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep } />;
     default:
-      return <CreateEventStep1 data = {formData.category} change = { setData } nextStep = { addStep }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 formData = {formData} change = { setData } nextStep = { addStep }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }
