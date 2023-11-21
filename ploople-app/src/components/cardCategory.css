@@ -1,7 +1,7 @@
 .card-category {
-  border: 1px solid #0000001a;
   height: 25vh;
   position: relative;
+  border-radius: 5px;
 }
 
 .title--bottom {
@@ -30,5 +30,6 @@
 
 /* CHECKED STYLES */
 [type=radio]:checked + div {
-  border: 2px solid #12486B;
+  border: 5px solid #78D6C6;
 }
+

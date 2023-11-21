@@ -1,9 +1,11 @@
 
-export default function RecapEvent({data, previousStep, nextStep}) {
+import Steps from "../components/steps";
+
+export default function RecapEvent({data, previousStep, nextStep, actualStep}) {
 
   return (
     <>
-      <h1 className="steps--title">4 - Confirm your event</h1>
+      <Steps actualStep = {actualStep + 1}/>
       <div>
         {
           data.category

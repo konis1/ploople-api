@@ -1,5 +1,6 @@
 import useFetch from "../services/api.js"
 import { existInArray } from "./create-event.js";
+import Steps from "../components/steps.js";
 
 const LoadingScreen = () => {
   return (
@@ -24,6 +25,7 @@ function cardFriend(data, change, formData) {
     let name = friend.user_friendy.name
     let isFriendSelected = existInArray(formData.friends, name)
     return (
+
             <div className="card-friend" key={friend.user_friendy.id}>
               <label>
                 <input
@@ -48,7 +50,7 @@ function cardFriend(data, change, formData) {
   );
 }
 
-export default function CreateEventStep3( { previousStep, nextStep, change, formData } ) {
+export default function CreateEventStep3( { previousStep, nextStep, change, formData, actualStep } ) {
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/friends");
 
   if (loading) return <LoadingScreen/>
@@ -58,9 +60,7 @@ export default function CreateEventStep3( { previousStep, nextStep, change, form
     <div className="wrapper">
       <div className="home-container text-center">
         <form>
-          <div className="steps">
-            <h1 className="steps--title">3 - Invite your friends</h1>
-          </div>
+         <Steps actualStep = {actualStep + 1}/>
             { cardFriend(data, change, formData) }
           <div>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>

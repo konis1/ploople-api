@@ -88,13 +88,13 @@ export default function CreateEvent() {
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
   switch (step) {
     case 1:
-      return <CreateEventStep2  nextStep = { addStep } previousStep = { removeStep } change = {setData} formData = { formData }/>;
+      return <CreateEventStep2  nextStep = { addStep } previousStep = { removeStep } change = {setData} formData = { formData } actualStep = {step}/>;
     case 2:
-      return <CreateEventStep3  nextStep = { addStep } previousStep = { removeStep }  change = {setData} formData = { formData }/>;
+      return <CreateEventStep3  nextStep = { addStep } previousStep = { removeStep }  change = {setData} formData = { formData } actualStep = {step}/>;
     case 3:
-      return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep } />;
+      return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep } actualStep = {step} />;
     default:
-      return <CreateEventStep1 formData = {formData} change = { setData } nextStep = { addStep }/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 formData = {formData} change = { setData } nextStep = { addStep } actualStep = {step}/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }

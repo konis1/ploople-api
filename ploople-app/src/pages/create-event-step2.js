@@ -1,10 +1,11 @@
 import React, { useId } from "react";
 import DatePicker from "react-datepicker";
+import Steps from "../components/steps";
 import "react-datepicker/dist/react-datepicker.css";
 import "../components/cardCategory.css";
 import "./create-event-step1.css";
 
-export default function CreateEventStep2({ nextStep, previousStep, change, formData }) {
+export default function CreateEventStep2({ nextStep, previousStep, change, formData, actualStep }) {
 
   const commentId = useId();
 
@@ -12,9 +13,7 @@ export default function CreateEventStep2({ nextStep, previousStep, change, formD
     <div className="wrapper">
       <div className="home-container text-center">
         <form>
-          <div className="steps">
-            <h1 className="steps--title">2 - Choose the date</h1>
-          </div>
+          <Steps actualStep = {actualStep + 1}/>
           <div>
             <DatePicker
               selected={ formData.date_start }
