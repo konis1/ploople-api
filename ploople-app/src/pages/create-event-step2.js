@@ -13,7 +13,7 @@ export default function CreateEventStep2({ nextStep, previousStep, change, formD
     <div className="wrapper">
       <div className="home-container text-center">
         <form>
-          <Steps actualStep = {actualStep + 1}/>
+        <Steps actualStep = {formData.step} doneSteps = {formData.stepsDone}/>
           <div>
             <DatePicker
               selected={ formData.date_start }
@@ -38,8 +38,8 @@ export default function CreateEventStep2({ nextStep, previousStep, change, formD
             />
           </div>
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ previousStep }  > Previous </button>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }  > Next </button>
+            <button className="form__button btn--no-border btn--shadow" onClick={ previousStep }  > Previous </button>
           </div>
         </form>
       </div>

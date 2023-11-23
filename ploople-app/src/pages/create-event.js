@@ -16,7 +16,9 @@ export default function CreateEvent() {
     date_start: new Date(),
     date_end: new Date(),
     comment: "",
-    friends: []
+    friends: [],
+    step: 0,
+    stepsDone:[]
   })
 
     function submitForm() {
@@ -78,23 +80,35 @@ export default function CreateEvent() {
   }
 
   function addStep() {
-    setStep(step + 1);
+    let updatedStepsDoneList = [...formData.stepsDone, formData.step];
+    setFormData({
+      ...formData,
+      step: formData.step + 1,
+      stepsDone: updatedStepsDoneList
+    })
   }
 
   function removeStep() {
-    setStep(step - 1);
+    let updatedStepsDoneList = [...formData.stepsDone];
+    const index = formData.stepsDone.findIndex((element) => element === formData.step);
+    updatedStepsDoneList.splice(index,1);
+    setFormData({
+      ...formData,
+      step: formData.step - 1,
+      stepsDone: updatedStepsDoneList
+    })
   }
 //Déterminer category, date, comment, friends qui sont les éléments du formulaire
 // Déterminer Step pour savoir quelle partie du formulaire nous allons afficher (cf switch ci dessous)
-  switch (step) {
+  switch (formData.step) {
     case 1:
-      return <CreateEventStep2  nextStep = { addStep } previousStep = { removeStep } change = {setData} formData = { formData } actualStep = {step}/>;
+      return <CreateEventStep2  nextStep = { addStep } previousStep = { removeStep } change = {setData} formData = { formData } />;
     case 2:
-      return <CreateEventStep3  nextStep = { addStep } previousStep = { removeStep }  change = {setData} formData = { formData } actualStep = {step}/>;
+      return <CreateEventStep3  nextStep = { addStep } previousStep = { removeStep }  change = {setData} formData = { formData } />;
     case 3:
-      return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep } actualStep = {step} />;
+      return <RecapEvent data = {formData} nextStep = { submitForm }  previousStep = { removeStep }  />;
     default:
-      return <CreateEventStep1 formData = {formData} change = { setData } nextStep = { addStep } actualStep = {step}/>; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
+      return <CreateEventStep1 formData = {formData} change = { setData } nextStep = { addStep } />; //CAtegory peut êter NULL si on arrive de l'acceuil, aura une valeure sinon
   }
 
 }

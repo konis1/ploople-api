@@ -25,12 +25,12 @@ export default function CreateEventStep1({ formData, change, nextStep, actualSte
   const {data, error, loading} = useFetch("http://localhost:3000/api/version1/types");
   if (loading) return <LoadingScreen/>
   if (error) return <ErrorScreen/>
-
+  console.log(formData.stepsDone);
   return (
     <div className="wrapper">
       <div className="home-container text-center">
         <form>
-          <Steps actualStep = {actualStep + 1}/>
+          <Steps actualStep = {formData.step} doneSteps = {formData.stepsDone}/>
           <Cards categories={ data } formData={ formData } change={ change }/>
           <div>
             <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }> Next </button>
