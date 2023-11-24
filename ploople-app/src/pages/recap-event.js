@@ -33,16 +33,19 @@ export default function RecapEvent({data, previousStep, nextStep, actualStep}) {
         </div>
         <div>You invited:</div>
         <div className="recap-div">
+          <ul className="no-bullets">
+
           {
             data.friends.map((friend,index) => (
               <li key={index}> {friend}</li>
             ))
             }
+          </ul>
         </div>
 
         <div>
-          <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep } > Confirm</button>
           <button className="form__button btn--no-border btn--shadow" onClick={ previousStep}  > Previous </button>
+          <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep } > Confirm</button>
         </div>
           </div>
           </div>

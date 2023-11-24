@@ -10,4 +10,6 @@
   background-image: url("./assets/ploopl.jpg");
   height:100vh;
   overflow:auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -3,6 +3,7 @@ import CreateEventStep2 from "./create-event-step2";
 import CreateEventStep3 from "./create-event-step3";
 import RecapEvent from "./recap-event";
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export function existInArray(array, valueWeCheck) {
    const resultSearch = array.find((e) => e === valueWeCheck )
@@ -10,7 +11,8 @@ export function existInArray(array, valueWeCheck) {
  }
 
 export default function CreateEvent() {
-  const[step, setStep] = useState(0);
+  const navigate = useNavigate();
+
   const[formData, setFormData] = useState({
     category:"",
     date_start: new Date(),
@@ -20,6 +22,7 @@ export default function CreateEvent() {
     step: 0,
     stepsDone:[]
   })
+
 
     function submitForm() {
     fetch('http://localhost:3000/api/version1/events/', {
@@ -31,6 +34,7 @@ export default function CreateEvent() {
       })
       .then(response => {
         console.log(response)
+        navigate("/");
       })
       .catch(error => {
         console.log(error)

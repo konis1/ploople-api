@@ -38,8 +38,8 @@ export default function CreateEventStep2({ nextStep, previousStep, change, formD
             />
           </div>
           <div>
-            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }  > Next </button>
             <button className="form__button btn--no-border btn--shadow" onClick={ previousStep }  > Previous </button>
+            <button className="form__button btn--sea btn--no-border btn--shadow" onClick={ nextStep }  > Next </button>
           </div>
         </form>
       </div>

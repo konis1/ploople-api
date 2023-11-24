@@ -7,7 +7,7 @@ export default function Home() {
     <div className="wrapper">
       <div className="container text-center">
         <div className="row justify-content-center">
-          <div className="col-10 home-card">
+          <div className="col-10 col-sm-10 col-md-6 col-lg-6 home-card">
                 <h2> Planning with friends made easier</h2>
                 <p> Get started now, create your first event and invite your buddies</p>
             <button className="btn btn-success cta-create" onClick={() => navigate('create-event-step1')}>
