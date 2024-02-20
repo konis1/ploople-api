@@ -9,6 +9,8 @@ Développement d'une application en Rails/React, conçue pour faciliter l'organi
 Ruby On Rails, React
 
 <h3>Aperçu du projet</h3>
+<img src="https://github.com/konis1/ploople-api/assets/100082476/8da6cb31-5bac-431f-970f-41e0ee3c89d9" >
+
 ![image](https://github.com/konis1/ploople-api/assets/100082476/8da6cb31-5bac-431f-970f-41e0ee3c89d9)
 ![image](https://github.com/konis1/ploople-api/assets/100082476/a9809345-04da-4492-bb35-668bef82e084)
 ![image](https://github.com/konis1/ploople-api/assets/100082476/3b187610-3a12-4387-b9c5-3ac227cf39c8)
